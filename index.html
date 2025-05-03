@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dagim Faji - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .gallery-img {
+      transition: transform 0.3s ease-in-out;
+    }
+    .gallery-img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- Navbar -->
+  <nav class="bg-blue-600 text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Dagim Faji</h1>
+      <ul class="flex space-x-6">
+        <li><a href="#home" class="hover:underline">Home</a></li>
+        <li><a href="#gallery" class="hover:underline">Gallery</a></li>
+        <li><a href="#about" class="hover:underline">About</a></li>
+        <li><a href="#contact" class="hover:underline">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="bg-blue-500 text-white py-20 text-center">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold mb-4">Welcome to My Portfolio</h2>
+      <p class="text-lg mb-6">Showcasing my work and passion for technology and creativity</p>
+      <a href="#gallery" class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-200">View Gallery</a>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="py-16">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-8">My Gallery</h2>
+      <!-- Upload Section -->
+      <div class="text-center mb-8">
+        <input type="file" id="imageUpload" accept="image/*" class="mb-4 p-2 border rounded">
+        <button onclick="uploadImage()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Upload Image</button>
+      </div>
+      <!-- Gallery Grid -->
+      <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- Sample Images (placeholders) -->
+        <div class="bg-white p-4 rounded shadow">
+          <img src="https://via.placeholder.com/300x200" alt="Sample Image 1" class="gallery-img w-full h-48 object-cover rounded">
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+          <img src="https://via.placeholder.com/300x200" alt="Sample Image 2" class="gallery-img w-full h-48 object-cover rounded">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="bg-white py-16">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-8">About Me</h2>
+      <p class="text-lg max-w-2xl mx-auto">
+        I'm Dagim Faji, an IT professional with a passion for technology and innovation. With experience in IT support, system administration, and ERP systems, I enjoy solving problems and creating efficient solutions. This portfolio showcases my work and creative projects.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 bg-gray-100">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-8">Get in Touch</h2>
+      <p class="text-lg mb-4">Email: dagimfaji@gmail.com</p>
+      <p class="text-lg mb-4">Phone: +251 937996667</p>
+      <p class="text-lg">Connect with me on <a href="https://linkedin.com/in/dagm-faji-3484121ba" class="text-blue-600 hover:underline">LinkedIn</a></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-600 text-white text-center p-4">
+    <p>&copy; 2025 Dagim Faji. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function uploadImage() {
+      const input = document.getElementById('imageUpload');
+      const gallery = document.getElementById('galleryGrid');
+      const file = input.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const div = document.createElement('div');
+          div.className = 'bg-white p-4 rounded shadow';
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.alt = 'Uploaded Image';
+          img.className = 'gallery-img w-full h-48 object-cover rounded';
+          div.appendChild(img);
+          gallery.appendChild(div);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert('Please select an image to upload.');
+      }
+    }
+  </script>
+</body>
+</html>
