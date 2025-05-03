@@ -124,6 +124,48 @@
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.2); }
     }
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    .hamburger::before {
+      content: '\2630';
+      font-size: 1.5rem;
+      color: white;
+    }
+    @media (max-width: 767px) {
+      .hamburger {
+        display: block;
+      }
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #2dd4bf;
+        z-index: 50;
+      }
+      .nav-menu.active {
+        display: block;
+      }
+      nav ul {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      nav ul li {
+        width: 100%;
+        text-align: center;
+      }
+      nav ul li a {
+        padding: 1rem;
+        display: block;
+      }
+      nav ul li::before {
+        display: none; /* Disable animation on mobile for simplicity */
+      }
+    }
   </style>
 </head>
 <body class="bg-gray-100 font-sans">
@@ -132,10 +174,13 @@
     <nav class="bg-teal-600 text-white p-4 shadow-md fixed top-0 left-0 w-full z-50">
       <div class="container mx-auto flex justify-between items-center">
         <div class="flex items-center space-x-3">
-          <img src="images/image 1.jpg" alt="Profile Picture" class="profile-pic">
+          <img src="images/profile.jpg" alt="Profile Picture" class="profile-pic">
           <h1 class="text-2xl font-bold">Dagim Faji</h1>
         </div>
-        <ul class="flex space-x-6">
+        <div class="md:hidden">
+          <div class="hamburger" onclick="toggleMenu()"></div>
+        </div>
+        <ul class="nav-menu md:flex md:space-x-6">
           <li><a href="#home">Home</a></li>
           <li><a href="#gallery">Gallery</a></li>
           <li><a href="#resume" id="resumeLink">Resume</a></li>
@@ -162,16 +207,21 @@
         <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           <!-- Manually Added Images -->
           <div class="bg-white p-4 rounded shadow">
-            <img src="images/image 2.jpg" alt="Project Image 1" class="gallery-img w-full h-48 object-cover rounded" onclick="openModal(this.src)">
+            <img src="images/sample1.jpg" alt="Project Image 1" class="gallery-img w-full h-48 object-cover rounded" onclick="openModal(this.src)">
           </div>
           <div class="bg-white p-4 rounded shadow">
-            <img src="images/image 3.jpg" alt="Project Image 2" class="gallery-img w-full h-48 object-cover rounded" onclick="openModal(this.src)">
+            <img src="images/sample2.jpg" alt="Project Image 2" class="gallery-img w-full h-48 object-cover rounded" onclick="openModal(this.src)">
           </div>
           <div class="bg-white p-4 rounded shadow">
-            <img src="images/image 4.jpg" alt="Project Image 3" class="gallery-img w-full h-48 object-cover rounded" onclick="openModal(this.src)">
+            <img src="images/sample3.jpg" alt="Project Image 3" class="gallery-img w-full h-48 object-cover rounded" onclick="openModal(this.src)">
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- Resume Section (Dynamically Loaded) -->
+    <section id="resume" class="py-16">
+      <div id="resumeContainer"></div>
     </section>
 
     <!-- About Section -->
@@ -224,6 +274,11 @@
         closeModal();
       }
     });
+
+    function toggleMenu() {
+      const menu = document.querySelector('.nav-menu');
+      menu.classList.toggle('active');
+    }
   </script>
 
   <!-- React Component for Resume -->
