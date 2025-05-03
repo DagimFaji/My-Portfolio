@@ -146,6 +146,13 @@
         background: #2dd4bf;
         z-index: 50;
       }
+      #scrollToTopBtn {
+        z-index: 100;
+      }
+      #scrollToTopBtn.visible {
+        opacity: 1;
+        pointer-events: auto;
+      }
       .nav-menu.active {
         display: block;
       }
@@ -273,17 +280,43 @@
       const menu = document.querySelector('.nav-menu');
       menu.classList.toggle('active');
     }
- document.getElementById('viewResumeBtn').addEventListener('click', function(e) {
-  e.preventDefault();
-  setTimeout(() => {
-    const footer = document.querySelector('footer');
-    const footerHeight = footer.offsetHeight;
-    const extraScroll = viewportHeight * 0.5;// 50% of viewport height
-    window.scrollTo({
-      top: footer.offsetTop + footerHeight - window.innerHeight,
-      behavior: 'smooth'
+    
+document.addEventListener('DOMContentLoaded', function() {
+  const viewResumeBtn = document.getElementById('viewResumeBtn');
+  if (viewResumeBtn) {
+    viewResumeBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      setTimeout(() => {
+        const footer = document.querySelector('footer');
+        const footerHeight = footer.offsetHeight;
+        const viewportHeight = window.innerHeight;
+        const extraScroll = viewportHeight * 0.5; // 50% of viewport height
+        window.scrollTo({
+          top: footer.offsetTop + footerHeight - viewportHeight + extraScroll,
+          behavior: 'smooth'
+        });
+      }, 100);
     });
-  }, 100);
+  }
+});
+    // Scroll to Top Button Logic
+const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+// Show/Hide button based on scroll position
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 300) {
+    scrollToTopBtn.classList.add('visible');
+  } else {
+    scrollToTopBtn.classList.remove('visible');
+  }
+});
+
+// Scroll to top when button is clicked
+scrollToTopBtn.addEventListener('click', function() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
 });
   </script>
 
@@ -410,6 +443,10 @@
 
     const root = ReactDOM.createRoot(document.getElementById('resumeRoot'));
     root.render(<Resume />);
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="fixed bottom-8 right-8 bg-teal-600 text-white p-3 rounded-full shadow-lg hover:bg-teal-700 transition-opacity duration-300 opacity-0 pointer-events-none">
+  ↑
+</button>
   </script>
 </body>
 </html>
