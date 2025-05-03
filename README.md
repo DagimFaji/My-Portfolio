@@ -1,4 +1,3 @@
-#My-Portfolio
 Dagim Faji Portfolio Website
 Overview
 This is a personal portfolio website for Dagim Faji, designed to showcase professional information and a static gallery of images. The site features a responsive design, pictures, and a clean, professional layout.
