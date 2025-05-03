@@ -41,19 +41,17 @@
   <section id="gallery" class="py-16">
     <div class="container mx-auto">
       <h2 class="text-3xl font-bold text-center mb-8">My Gallery</h2>
-      <!-- Upload Section -->
-      <div class="text-center mb-8">
-        <input type="file" id="imageUpload" accept="image/*" class="mb-4 p-2 border rounded">
-        <button onclick="uploadImage()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Upload Image</button>
-      </div>
       <!-- Gallery Grid -->
       <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <!-- Sample Images (placeholders) -->
+        <!-- Manually Added Images -->
         <div class="bg-white p-4 rounded shadow">
-          <img src="https://via.placeholder.com/300x200" alt="Sample Image 1" class="gallery-img w-full h-48 object-cover rounded">
+          <img src="images/sample1.jpg" alt="Project Image 1" class="gallery-img w-full h-48 object-cover rounded">
         </div>
         <div class="bg-white p-4 rounded shadow">
-          <img src="https://via.placeholder.com/300x200" alt="Sample Image 2" class="gallery-img w-full h-48 object-cover rounded">
+          <img src="images/sample2.jpg" alt="Project Image 2" class="gallery-img w-full h-48 object-cover rounded">
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+          <img src="images/sample3.jpg" alt="Project Image 3" class="gallery-img w-full h-48 object-cover rounded">
         </div>
       </div>
     </div>
@@ -81,31 +79,7 @@
 
   <!-- Footer -->
   <footer class="bg-blue-600 text-white text-center p-4">
-    <p>&copy; 2025 Dagim Faji. All rights reserved.</p>
+    <p>© 2025 Dagim Faji. All rights reserved.</p>
   </footer>
-
-  <script>
-    function uploadImage() {
-      const input = document.getElementById('imageUpload');
-      const gallery = document.getElementById('galleryGrid');
-      const file = input.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const div = document.createElement('div');
-          div.className = 'bg-white p-4 rounded shadow';
-          const img = document.createElement('img');
-          img.src = e.target.result;
-          img.alt = 'Uploaded Image';
-          img.className = 'gallery-img w-full h-48 object-cover rounded';
-          div.appendChild(img);
-          gallery.appendChild(div);
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert('Please select an image to upload.');
-      }
-    }
-  </script>
 </body>
 </html>
