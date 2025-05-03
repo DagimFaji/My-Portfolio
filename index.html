@@ -273,12 +273,13 @@
       const menu = document.querySelector('.nav-menu');
       menu.classList.toggle('active');
     }
-    document.querySelector('a[href="#gallery"]').addEventListener('click', function(e) {
+  document.querySelector('a[href="#resume"]').addEventListener('click', function(e) {
   e.preventDefault();
   setTimeout(() => {
     const footer = document.querySelector('footer');
+    const footerHeight = footer.offsetHeight;
     window.scrollTo({
-      top: footer.offsetBottom,
+      top: footer.offsetTop + footerHeight - window.innerHeight,
       behavior: 'smooth'
     });
   }, 100);
@@ -317,14 +318,14 @@
   if (!isVisible) {
     setTimeout(() => {
       const footer = document.querySelector('footer');
+      const footerHeight = footer.offsetHeight;
       window.scrollTo({
-        top: footer.offsetBottom,
+        top: footer.offsetTop + footerHeight - window.innerHeight,
         behavior: 'smooth'
       });
     }, 100);
   }
 };
-
       useEffect(() => {
         const resumeLink = document.getElementById('resumeLink');
         resumeLink.addEventListener('click', (e) => {
