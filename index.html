@@ -5,7 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dagim Faji - Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.22.5/babel.min.js"></script>
   <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1 0 auto;
+    }
+    footer {
+      flex-shrink: 0;
+    }
     .gallery-img {
       transition: transform 0.3s ease-in-out;
       cursor: pointer;
@@ -46,84 +60,140 @@
       border: 2px solid white;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+    .resume-container {
+      display: none;
+      animation: float 3s ease-in-out infinite;
+      border: 4px solid transparent;
+      border-image: linear-gradient(to right, #a855f7, #4f46e5) 1;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+      border-radius: 16px;
+      background: linear-gradient(to bottom right, #6b7280, #1f2937);
+      margin: 2rem auto;
+      max-width: 900px;
+      padding: 2rem;
+      color: white;
+    }
+    .resume-container.visible {
+      display: block;
+    }
+    .resume-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(5px);
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    nav ul li {
+      position: relative;
+      padding: 0.5rem 1rem;
+    }
+    nav ul li a {
+      position: relative;
+      z-index: 1;
+      padding: 0.5rem 1rem;
+    }
+    nav ul li::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      transform: scale(0);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+      z-index: 0;
+      background: rgba(255, 255, 255, 0.1);
+      box-sizing: border-box;
+    }
+    nav ul li:hover::before {
+      border-color: white;
+      transform: scale(1.2);
+      opacity: 1;
+      animation: rectScale 1.5s ease-in-out infinite;
+    }
+    @keyframes rectScale {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
   </style>
 </head>
 <body class="bg-gray-100 font-sans">
-  <!-- Navbar -->
-  <nav class="bg-teal-600 text-white p-4 shadow-md">
-    <div class="container mx-auto flex justify-between items-center">
-      <div class="flex items-center space-x-3">
-        <img src="images/image 1.jpg" alt="Profile Picture" class="profile-pic">
-        <h1 class="text-2xl font-bold">Dagim Faji</h1>
-      </div>
-      <ul class="flex space-x-6">
-        <li><a href="#home" class="hover:underline">Home</a></li>
-        <li><a href="#gallery" class="hover:underline">Gallery</a></li>
-        <li><a href="#resume" onclick="loadResume()" class="hover:underline">Resume</a></li>
-        <li><a href="#about" class="hover:underline">About</a></li>
-        <li><a href="#contact" class="hover:underline">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section id="home" class="bg-gradient-to-r from-teal-600 to-teal-800 text-white py-20 text-center">
-    <div class="container mx-auto">
-      <h2 class="text-4xl font-bold mb-4">Welcome to My Portfolio</h2>
-      <p class="text-lg mb-6">Showcasing my work and passion for technology and creativity</p>
-      <a href="#gallery" class="bg-white text-teal-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-200">View Gallery</a>
-    </div>
-  </section>
-
-  <!-- Gallery Section -->
-  <section id="gallery" class="py-16 bg-gray-50">
-    <div class="container mx-auto">
-      <h2 class="text-3xl font-bold text-center mb-8">My Gallery</h2>
-      <!-- Gallery Grid -->
-      <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <!-- Manually Added Images -->
-        <div class="bg-white p-4 rounded shadow">
-          <img src="images/image 2.jpg" alt="Project Image 1" class="gallery-img w-full h-48 object-cover rounded" onclick="openModal(this.src)">
+  <main>
+    <!-- Navbar -->
+    <nav class="bg-teal-600 text-white p-4 shadow-md fixed top-0 left-0 w-full z-50">
+      <div class="container mx-auto flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+          <img src="images/image 1.jpg" alt="Profile Picture" class="profile-pic">
+          <h1 class="text-2xl font-bold">Dagim Faji</h1>
         </div>
-        <div class="bg-white p-4 rounded shadow">
-          <img src="images/image 3.jpg" alt="Project Image 2" class="gallery-img w-full h-48 object-cover rounded" onclick="openModal(this.src)">
-        </div>
-        <div class="bg-white p-4 rounded shadow">
-          <img src="images/image 4.jpg" alt="Project Image 3" class="gallery-img w-full h-48 object-cover rounded" onclick="openModal(this.src)">
+        <ul class="flex space-x-6">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#resume" id="resumeLink">Resume</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="bg-gradient-to-r from-teal-600 to-teal-800 text-white py-20 text-center mt-16">
+      <div class="container mx-auto">
+        <h2 class="text-4xl font-bold mb-4">Welcome to My Portfolio</h2>
+        <p class="text-lg mb-6">Showcasing my work and passion for technology and creativity</p>
+        <a href="#gallery" class="bg-white text-teal-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-200">View Gallery</a>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 bg-gray-50">
+      <div class="container mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-8">My Gallery</h2>
+        <!-- Gallery Grid -->
+        <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <!-- Manually Added Images -->
+          <div class="bg-white p-4 rounded shadow">
+            <img src="images/image 2.jpg" alt="Project Image 1" class="gallery-img w-full h-48 object-cover rounded" onclick="openModal(this.src)">
+          </div>
+          <div class="bg-white p-4 rounded shadow">
+            <img src="images/image 3.jpg" alt="Project Image 2" class="gallery-img w-full h-48 object-cover rounded" onclick="openModal(this.src)">
+          </div>
+          <div class="bg-white p-4 rounded shadow">
+            <img src="images/image 4.jpg" alt="Project Image 3" class="gallery-img w-full h-48 object-cover rounded" onclick="openModal(this.src)">
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Resume Section (Placeholder) -->
-  <section id="resume" class="bg-white py-16">
-    <div class="container mx-auto">
-      <h2 class="text-3xl font-bold text-center mb-8">Resume</h2>
-      <div id="resumeContent" class="max-w-4xl mx-auto text-left">
-        <p class="text-lg text-center">Click the Resume tab to load the content.</p>
+    <!-- About Section -->
+    <section id="about" class="bg-gray-50 py-16">
+      <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-8">About Me</h2>
+        <p class="text-lg max-w-2xl mx-auto">
+          I'm Dagim Faji, an IT professional passionate about technology and innovation. With a strong background in IT support, system administration, and ERP systems, I thrive on solving complex problems and delivering efficient solutions. For a detailed overview of my experience and skills, please check out my resume accessible via the Resume tab.
+        </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- About Section -->
-  <section id="about" class="bg-gray-50 py-16">
-    <div class="container mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-8">About Me</h2>
-      <p class="text-lg max-w-2xl mx-auto">
-        I'm Dagim Faji, an IT professional with a passion for technology and innovation. With experience in IT support, system administration, and ERP systems, I enjoy solving problems and creating efficient solutions. This portfolio showcases my work and creative projects.
-      </p>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-16 bg-white">
-    <div class="container mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-8">Get in Touch</h2>
-      <p class="text-lg mb-4">Email: dagimfaji@gmail.com</p>
-      <p class="text-lg mb-4">Phone: +251 937996667</p>
-      <p class="text-lg">Connect with me on <a href="https://linkedin.com/in/dagm-faji-3484121ba" class="text-teal-600 hover:underline">LinkedIn</a></p>
-    </div>
-  </section>
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+      <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-8">Get in Touch</h2>
+        <p class="text-lg mb-4">Email: dagimfaji@gmail.com</p>
+        <p class="text-lg mb-4">Phone: +251 937996667</p>
+        <p class="text-lg">Connect with me on <a href="https://linkedin.com/in/dagm-faji-3484121ba" class="text-teal-600 hover:underline">LinkedIn</a></p>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer class="bg-teal-600 text-white text-center p-4">
@@ -149,61 +219,134 @@
       modal.style.display = 'none';
     }
 
-    // Close modal when clicking outside the image
     document.getElementById('modal').addEventListener('click', function(e) {
       if (e.target === this) {
         closeModal();
       }
     });
+  </script>
 
-    async function loadResume() {
-      const resumeContent = document.getElementById('resumeContent');
-      try {
-        const response = await fetch('resume.json');
-        if (!response.ok) throw new Error('Failed to load resume data');
-        const data = await response.json();
+  <!-- React Component for Resume -->
+  <div id="resumeRoot"></div>
+  <script type="text/babel">
+    const { useState, useEffect } = React;
 
-        // Generate HTML for resume content
-        let html = `
-          <h3 class="text-2xl font-semibold mb-4">${data.name}</h3>
-          <p class="text-lg mb-4">${data.address} | ${data.phone} | ${data.email} | 
-            <a href="${data.github}" class="text-teal-600 hover:underline">GitHub</a> | 
-            <a href="${data.linkedin}" class="text-teal-600 hover:underline">LinkedIn</a></p>
-          
-          <h4 class="text-xl font-semibold mt-6 mb-2">Summary</h4>
-          <p class="text-lg mb-4">${data.summary}</p>
-          
-          <h4 class="text-xl font-semibold mt-6 mb-2">Education</h4>
-          <p class="text-lg mb-4">${data.education.degree}<br>${data.education.institution}</p>
-          
-          <h4 class="text-xl font-semibold mt-6 mb-2">Professional Experience</h4>
-        `;
+    const Resume = () => {
+      const [resumeData, setResumeData] = useState(null);
+      const [isVisible, setIsVisible] = useState(false);
+      const [error, setError] = useState(null);
 
-        data.experience.forEach(job => {
-          html += `
-            <p class="text-lg font-medium">${job.title}<br>${job.company}<br>${job.dates}</p>
-            <ul class="list-disc ml-6 text-lg mb-4">
-              ${job.responsibilities.map(resp => `<li>${resp}</li>`).join('')}
-            </ul>
-          `;
+      const fetchResume = async () => {
+        try {
+          const response = await fetch('./resume.json');
+          if (!response.ok) throw new Error('Failed to load resume data');
+          const data = await response.json();
+          setResumeData(data);
+          setError(null);
+        } catch (err) {
+          setError('Error loading resume. Please try again later.');
+          console.error(err);
+        }
+      };
+
+      const toggleResume = () => {
+        if (!resumeData && !error) {
+          fetchResume();
+        }
+        setIsVisible(!isVisible);
+        if (!isVisible) {
+          setTimeout(() => {
+            const resumeSection = document.getElementById('resume');
+            const navbarHeight = document.querySelector('nav').offsetHeight;
+            window.scrollTo({
+              top: resumeSection.offsetTop - navbarHeight,
+              behavior: 'smooth'
+            });
+          }, 100);
+        }
+      };
+
+      useEffect(() => {
+        const resumeLink = document.getElementById('resumeLink');
+        resumeLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          toggleResume();
         });
+      }, []);
 
-        html += `
-          <h4 class="text-xl font-semibold mt-6 mb-2">Skills</h4>
-          <ul class="list-disc ml-6 text-lg mb-4">
-            ${data.skills.map(skill => `<li>${skill}</li>`).join('')}
-          </ul>
-          
-          <h4 class="text-xl font-semibold mt-6 mb-2">Languages</h4>
-          <p class="text-lg mb-4">${data.languages.join(' | ')}</p>
-        `;
-
-        resumeContent.innerHTML = html;
-      } catch (error) {
-        resumeContent.innerHTML = '<p class="text-lg text-center text-red-600">Error loading resume. Please try again later.</p>';
-        console.error(error);
+      if (error) {
+        return (
+          <div className={`resume-container ${isVisible ? 'visible' : ''}`}>
+            <h2 className="text-3xl font-bold text-center mb-8">Resume</h2>
+            <p className="text-center text-red-300">{error}</p>
+          </div>
+        );
       }
-    }
+
+      if (!resumeData) {
+        return (
+          <div className={`resume-container ${isVisible ? 'visible' : ''}`}>
+            <h2 className="text-3xl font-bold text-center mb-8">Resume</h2>
+            <p className="text-center">Loading resume...</p>
+          </div>
+        );
+      }
+
+      return (
+        <div className={`resume-container ${isVisible ? 'visible' : ''}`}>
+          <h2 className="text-3xl font-bold text-center mb-8">Resume</h2>
+          <div className="resume-card">
+            <h3 className="text-2xl font-semibold mb-4">{resumeData.name}</h3>
+            <p className="text-lg mb-4">
+              {resumeData.address} | {resumeData.phone} | {resumeData.email} | 
+              <a href={resumeData.github} className="text-indigo-300 hover:underline ml-1">GitHub</a> | 
+              <a href={resumeData.linkedin} className="text-indigo-300 hover:underline ml-1">LinkedIn</a>
+            </p>
+          </div>
+
+          <div className="resume-card">
+            <h4 className="text-xl font-semibold mb-2">Summary</h4>
+            <p className="text-lg">{resumeData.summary}</p>
+          </div>
+
+          <div className="resume-card">
+            <h4 className="text-xl font-semibold mb-2">Education</h4>
+            <p className="text-lg">{resumeData.education.degree}<br/>{resumeData.education.institution}</p>
+          </div>
+
+          <div className="resume-card">
+            <h4 className="text-xl font-semibold mb-2">Professional Experience</h4>
+            {resumeData.experience.map((job, index) => (
+              <div key={index} className="mb-4">
+                <p className="text-lg font-medium">{job.title}<br/>{job.company}<br/>{job.dates}</p>
+                <ul className="list-disc ml-6 text-lg">
+                  {job.responsibilities.map((resp, i) => (
+                    <li key={i}>{resp}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="resume-card">
+            <h4 className="text-xl font-semibold mb-2">Skills</h4>
+            <ul className="list-disc ml-6 text-lg">
+              {resumeData.skills.map((skill, i) => (
+                <li key={i}>{skill}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="resume-card">
+            <h4 className="text-xl font-semibold mb-2">Languages</h4>
+            <p className="text-lg">{resumeData.languages.join(' | ')}</p>
+          </div>
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('resumeRoot'));
+    root.render(<Resume />);
   </script>
 </body>
 </html>
