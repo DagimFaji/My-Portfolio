@@ -8,20 +8,58 @@
   <style>
     .gallery-img {
       transition: transform 0.3s ease-in-out;
+      cursor: pointer;
     }
     .gallery-img:hover {
       transform: scale(1.05);
+    }
+    #modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    #modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+    }
+    #modal .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+    .profile-pic {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
 <body class="bg-gray-100 font-sans">
   <!-- Navbar -->
-  <nav class="bg-blue-600 text-white p-4 shadow-md">
+  <nav class="bg-teal-600 text-white p-4 shadow-md">
     <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Dagim Faji</h1>
+      <div class="flex items-center space-x-3">
+        <img src="images/profile.jpg" alt="Profile Picture" class="profile-pic">
+        <h1 class="text-2xl font-bold">Dagim Faji</h1>
+      </div>
       <ul class="flex space-x-6">
         <li><a href="#home" class="hover:underline">Home</a></li>
         <li><a href="#gallery" class="hover:underline">Gallery</a></li>
+        <li><a href="#resume" onclick="loadResume()" class="hover:underline">Resume</a></li>
         <li><a href="#about" class="hover:underline">About</a></li>
         <li><a href="#contact" class="hover:underline">Contact</a></li>
       </ul>
@@ -29,39 +67,46 @@
   </nav>
 
   <!-- Hero Section -->
-  <section id="home" class="bg-blue-500 text-white py-20 text-center">
+  <section id="home" class="bg-gradient-to-r from-teal-600 to-teal-800 text-white py-20 text-center">
     <div class="container mx-auto">
       <h2 class="text-4xl font-bold mb-4">Welcome to My Portfolio</h2>
       <p class="text-lg mb-6">Showcasing my work and passion for technology and creativity</p>
-      <a href="#gallery" class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-200">View Gallery</a>
+      <a href="#gallery" class="bg-white text-teal-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-200">View Gallery</a>
     </div>
   </section>
 
   <!-- Gallery Section -->
-  <section id="gallery" class="py-16">
+  <section id="gallery" class="py-16 bg-gray-50">
     <div class="container mx-auto">
       <h2 class="text-3xl font-bold text-center mb-8">My Gallery</h2>
       <!-- Gallery Grid -->
       <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         <!-- Manually Added Images -->
         <div class="bg-white p-4 rounded shadow">
-          <img src="images/image 1.jpg" alt="Project Image 1" class="gallery-img w-full h-48 object-cover rounded">
+          <img src="images/sample1.jpg" alt="Project Image 1" class="gallery-img w-full h-48 object-cover rounded" onclick="openModal(this.src)">
         </div>
         <div class="bg-white p-4 rounded shadow">
-          <img src="images/image 2.jpg" alt="Project Image 2" class="gallery-img w-full h-48 object-cover rounded">
+          <img src="images/sample2.jpg" alt="Project Image 2" class="gallery-img w-full h-48 object-cover rounded" onclick="openModal(this.src)">
         </div>
         <div class="bg-white p-4 rounded shadow">
-          <img src="images/image 3.jpg" alt="Project Image 3" class="gallery-img w-full h-48 object-cover rounded">
-        </div>
-        <div class="bg-white p-4 rounded shadow">
-          <img src="images/image 4.jpg" alt="Project Image 3" class="gallery-img w-full h-48 object-cover rounded">
+          <img src="images/sample3.jpg" alt="Project Image 3" class="gallery-img w-full h-48 object-cover rounded" onclick="openModal(this.src)">
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Resume Section (Placeholder) -->
+  <section id="resume" class="bg-white py-16">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-8">Resume</h2>
+      <div id="resumeContent" class="max-w-4xl mx-auto text-left">
+        <p class="text-lg text-center">Click the Resume tab to load the content.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- About Section -->
-  <section id="about" class="bg-white py-16">
+  <section id="about" class="bg-gray-50 py-16">
     <div class="container mx-auto text-center">
       <h2 class="text-3xl font-bold mb-8">About Me</h2>
       <p class="text-lg max-w-2xl mx-auto">
@@ -71,18 +116,94 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="py-16 bg-gray-100">
+  <section id="contact" class="py-16 bg-white">
     <div class="container mx-auto text-center">
       <h2 class="text-3xl font-bold mb-8">Get in Touch</h2>
       <p class="text-lg mb-4">Email: dagimfaji@gmail.com</p>
       <p class="text-lg mb-4">Phone: +251 937996667</p>
-      <p class="text-lg">Connect with me on <a href="https://linkedin.com/in/dagm-faji-3484121ba" class="text-blue-600 hover:underline">LinkedIn</a></p>
+      <p class="text-lg">Connect with me on <a href="https://linkedin.com/in/dagm-faji-3484121ba" class="text-teal-600 hover:underline">LinkedIn</a></p>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-blue-600 text-white text-center p-4">
+  <footer class="bg-teal-600 text-white text-center p-4">
     <p>© 2025 Dagim Faji. All rights reserved.</p>
   </footer>
+
+  <!-- Modal for Image View -->
+  <div id="modal">
+    <span class="close" onclick="closeModal()">×</span>
+    <img id="modalImage" src="" alt="Modal Image">
+  </div>
+
+  <script>
+    function openModal(src) {
+      const modal = document.getElementById('modal');
+      const modalImage = document.getElementById('modalImage');
+      modalImage.src = src;
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal');
+      modal.style.display = 'none';
+    }
+
+    // Close modal when clicking outside the image
+    document.getElementById('modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+
+    async function loadResume() {
+      const resumeContent = document.getElementById('resumeContent');
+      try {
+        const response = await fetch('resume.json');
+        if (!response.ok) throw new Error('Failed to load resume data');
+        const data = await response.json();
+
+        // Generate HTML for resume content
+        let html = `
+          <h3 class="text-2xl font-semibold mb-4">${data.name}</h3>
+          <p class="text-lg mb-4">${data.address} | ${data.phone} | ${data.email} | 
+            <a href="${data.github}" class="text-teal-600 hover:underline">GitHub</a> | 
+            <a href="${data.linkedin}" class="text-teal-600 hover:underline">LinkedIn</a></p>
+          
+          <h4 class="text-xl font-semibold mt-6 mb-2">Summary</h4>
+          <p class="text-lg mb-4">${data.summary}</p>
+          
+          <h4 class="text-xl font-semibold mt-6 mb-2">Education</h4>
+          <p class="text-lg mb-4">${data.education.degree}<br>${data.education.institution}</p>
+          
+          <h4 class="text-xl font-semibold mt-6 mb-2">Professional Experience</h4>
+        `;
+
+        data.experience.forEach(job => {
+          html += `
+            <p class="text-lg font-medium">${job.title}<br>${job.company}<br>${job.dates}</p>
+            <ul class="list-disc ml-6 text-lg mb-4">
+              ${job.responsibilities.map(resp => `<li>${resp}</li>`).join('')}
+            </ul>
+          `;
+        });
+
+        html += `
+          <h4 class="text-xl font-semibold mt-6 mb-2">Skills</h4>
+          <ul class="list-disc ml-6 text-lg mb-4">
+            ${data.skills.map(skill => `<li>${skill}</li>`).join('')}
+          </ul>
+          
+          <h4 class="text-xl font-semibold mt-6 mb-2">Languages</h4>
+          <p class="text-lg mb-4">${data.languages.join(' | ')}</p>
+        `;
+
+        resumeContent.innerHTML = html;
+      } catch (error) {
+        resumeContent.innerHTML = '<p class="text-lg text-center text-red-600">Error loading resume. Please try again later.</p>';
+        console.error(error);
+      }
+    }
+  </script>
 </body>
 </html>
