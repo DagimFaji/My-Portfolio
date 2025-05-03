@@ -189,14 +189,14 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="bg-gradient-to-r from-teal-600 to-teal-800 text-white py-20 text-center mt-16">
-      <div class="container mx-auto">
-        <h2 class="text-4xl font-bold mb-4">Welcome to My Portfolio</h2>
-        <p class="text-lg mb-6">Showcasing my work and resume</p>
-        <a href="#resume" class="bg-white text-teal-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-200">View resume</a>
-      </div>
-    </section>
+   <!-- Hero Section -->
+<section id="home" class="bg-gradient-to-r from-teal-600 to-teal-800 text-white py-20 text-center mt-16">
+  <div class="container mx-auto">
+    <h2 class="text-4xl font-bold mb-4">Welcome to My Portfolio</h2>
+    <p class="text-lg mb-6">Showcasing my work and resume</p>
+    <a href="#resume" id="viewResumeBtn" class="bg-white text-teal-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-200">View Resume</a>
+  </div>
+</section>
         <!-- Gallery Grid -->
         <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           <!-- Manually Added Images -->
@@ -273,7 +273,7 @@
       const menu = document.querySelector('.nav-menu');
       menu.classList.toggle('active');
     }
-  document.querySelector('a[href="#resume"]').addEventListener('click', function(e) {
+ document.getElementById('viewResumeBtn').addEventListener('click', function(e) {
   e.preventDefault();
   setTimeout(() => {
     const footer = document.querySelector('footer');
@@ -310,7 +310,7 @@
         }
       };
 
-   const toggleResume = () => {
+ const toggleResume = () => {
   if (!resumeData && !error) {
     fetchResume();
   }
@@ -319,8 +319,10 @@
     setTimeout(() => {
       const footer = document.querySelector('footer');
       const footerHeight = footer.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      const extraScroll = viewportHeight * 0.2; // 20% of viewport height
       window.scrollTo({
-        top: footer.offsetTop + footerHeight - window.innerHeight,
+        top: footer.offsetTop + footerHeight - viewportHeight + extraScroll,
         behavior: 'smooth'
       });
     }, 100);
