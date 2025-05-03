@@ -273,10 +273,21 @@
       const menu = document.querySelector('.nav-menu');
       menu.classList.toggle('active');
     }
+    document.querySelector('a[href="#gallery"]').addEventListener('click', function(e) {
+  e.preventDefault();
+  setTimeout(() => {
+    const footer = document.querySelector('footer');
+    window.scrollTo({
+      top: footer.offsetBottom,
+      behavior: 'smooth'
+    });
+  }, 100);
+});
   </script>
 
   <!-- React Component for Resume -->
   <div id="resumeRoot"></div>
+  
   <script type="text/babel">
     const { useState, useEffect } = React;
 
@@ -298,15 +309,16 @@
         }
       };
 
-    const toggleResume = () => {
+   const toggleResume = () => {
   if (!resumeData && !error) {
     fetchResume();
   }
   setIsVisible(!isVisible);
   if (!isVisible) {
     setTimeout(() => {
+      const footer = document.querySelector('footer');
       window.scrollTo({
-        top: document.documentElement.scrollHeight,
+        top: footer.offsetBottom,
         behavior: 'smooth'
       });
     }, 100);
