@@ -298,22 +298,20 @@
         }
       };
 
-      const toggleResume = () => {
-        if (!resumeData && !error) {
-          fetchResume();
-        }
-        setIsVisible(!isVisible);
-        if (!isVisible) {
-          setTimeout(() => {
-            const resumeSection = document.getElementById('resume');
-            const navbarHeight = document.querySelector('nav').offsetHeight;
-            window.scrollTo({
-              top: resumeSection.offsetTop - navbarHeight,
-              behavior: 'smooth'
-            });
-          }, 100);
-        }
-      };
+    const toggleResume = () => {
+  if (!resumeData && !error) {
+    fetchResume();
+  }
+  setIsVisible(!isVisible);
+  if (!isVisible) {
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth'
+      });
+    }, 100);
+  }
+};
 
       useEffect(() => {
         const resumeLink = document.getElementById('resumeLink');
