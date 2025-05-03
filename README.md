@@ -1,7 +1,6 @@
 #Dagim Faji Portfolio Website
 Overview
-This is a personal portfolio website for Dagim Faji, designed to showcase professional information and a static gallery of images. The site features a responsive design, a gallery for manually added pictures, and a clean, professional layout. Built with HTML, CSS (via Tailwind CSS), and minimal JavaScript, it is optimized for easy hosting on static platforms্র
-Features
+This is a personal portfolio website for Dagim Faji, designed to showcase professional information and a static gallery of images. The site features a responsive design, pictures, and a clean, professional layout.
 
 Responsive Design: Adapts to various screen sizes using Tailwind CSS.
 Static Image Gallery: Displays manually added images in a grid layout with hover effects.
