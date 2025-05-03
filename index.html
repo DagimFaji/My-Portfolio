@@ -311,6 +311,30 @@ window.addEventListener('scroll', function() {
   }
 });
 
+// Scroll to Top Button Logic
+const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+// Show/Hide button based on scroll position
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 100) { // Reduced from 300px to 100px for mobile responsiveness
+    scrollToTopBtn.classList.add('visible');
+  } else {
+    scrollToTopBtn.classList.remove('visible');
+  }
+});
+
+// Scroll to Top Button Logic
+const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+// Show/Hide button based on scroll position
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 100) { // Reduced from 300px to 100px for mobile responsiveness
+    scrollToTopBtn.classList.add('visible');
+  } else {
+    scrollToTopBtn.classList.remove('visible');
+  }
+});
+
 // Scroll to top when button is clicked
 scrollToTopBtn.addEventListener('click', function() {
   window.scrollTo({
@@ -443,8 +467,8 @@ scrollToTopBtn.addEventListener('click', function() {
 
     const root = ReactDOM.createRoot(document.getElementById('resumeRoot'));
     root.render(<Resume />);
-    <!-- Scroll to Top Button -->
-    <button id="scrollToTopBtn" class="fixed bottom-8 right-8 bg-teal-600 text-white p-3 rounded-full shadow-lg hover:bg-teal-700 transition-opacity duration-300 opacity-0 pointer-events-none">
+   <!-- Scroll to Top Button -->
+  <button id="scrollToTopBtn" class="fixed bottom-4 right-4 bg-teal-600 text-white p-4 rounded-full shadow-lg hover:bg-teal-700 transition-opacity duration-300 opacity-0 pointer-events-none text-xl">
   ↑
 </button>
   </script>
