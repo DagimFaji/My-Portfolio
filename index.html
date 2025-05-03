@@ -278,6 +278,7 @@
   setTimeout(() => {
     const footer = document.querySelector('footer');
     const footerHeight = footer.offsetHeight;
+    const extraScroll = viewportHeight * 0.5;// 50% of viewport height
     window.scrollTo({
       top: footer.offsetTop + footerHeight - window.innerHeight,
       behavior: 'smooth'
@@ -320,7 +321,7 @@
       const footer = document.querySelector('footer');
       const footerHeight = footer.offsetHeight;
       const viewportHeight = window.innerHeight;
-      const extraScroll = viewportHeight * 0.2; // 20% of viewport height
+      const extraScroll = viewportHeight * 0.5; // 50% of viewport height
       window.scrollTo({
         top: footer.offsetTop + footerHeight - viewportHeight + extraScroll,
         behavior: 'smooth'
