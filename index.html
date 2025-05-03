@@ -201,7 +201,7 @@
       <div class="container mx-auto">
         <h2 class="text-4xl font-bold mb-4">Welcome to My Portfolio</h2>
         <p class="text-lg mb-6">Showcasing my work and resume</p>
-        <a href="#resume" id="viewResumeBtn,resumeLink" class="bg-white text-teal-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-200">View Resume</a>
+        <a href="#resume" id="viewResumeBtn" class="bg-white text-teal-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-200">View Resume</a>
       </div>
     </section>
 
@@ -296,16 +296,9 @@
       if (viewResumeBtn) {
         viewResumeBtn.addEventListener('click', function(e) {
           e.preventDefault();
-          setTimeout(() => {
-            const footer = document.querySelector('footer');
-            const footerHeight = footer.offsetHeight;
-            const viewportHeight = window.innerHeight;
-            const extraScroll = viewportHeight * 0.5; // 50% of viewport height
-            window.scrollTo({
-              top: footer.offsetTop + footerHeight - viewportHeight + extraScroll,
-              behavior: 'smooth'
-            });
-          }, 100);
+          if (window.toggleResume) {
+            window.toggleResume(); // Call the globally exposed toggleResume function
+          }
         });
       }
     });
@@ -374,13 +367,15 @@
         }
       };
 
+      // Expose toggleResume globally
       useEffect(() => {
+        window.toggleResume = toggleResume; // Make toggleResume accessible globally
         const resumeLink = document.getElementById('resumeLink');
         resumeLink.addEventListener('click', (e) => {
           e.preventDefault();
           toggleResume();
         });
-      }, []);
+      }, [toggleResume]); // Add toggleResume as a dependency to useEffect
 
       if (error) {
         return (
