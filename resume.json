@@ -1,0 +1,74 @@
+{
+  "name": "Dagim Faji Dandena",
+  "address": "Addis Ababa, Ethiopia",
+  "phone": "+251 937996667",
+  "email": "dagimfaji@gmail.com",
+  "github": "https://github.com/DagimFaji",
+  "linkedin": "https://linkedin.com/in/dagm-faji-3484121ba",
+  "summary": "Dedicated IT professional with extensive experience providing technical support, troubleshooting, and maintaining IT infrastructure. Skilled in diagnosing hardware, software, and network issues, ensuring efficient IT operations. Known for delivering prompt and effective solutions, managing helpdesk systems, and supervising IT processes. Seeking opportunities to leverage expertise in roles that improve productivity and system reliability.",
+  "education": {
+    "degree": "Bachelor of Science in Computer Science",
+    "institution": "Hawassa University, Ethiopia"
+  },
+  "experience": [
+    {
+      "title": "IT Supervisor",
+      "company": "Kingdom (Ethiopia) Linen PLC, Adama Industrial Park, Ethiopia",
+      "dates": "July 2024 - Present",
+      "responsibilities": [
+        "Supervise IT operations, supporting over 40 users, maintaining 24/7 system uptime through proactive monitoring and preventive maintenance.",
+        "Oversaw installation and maintenance of network hardware, Windows servers, and user workstations, reducing incident resolution time by 30%.",
+        "Collaborated with HR, finance, and production departments to resolve IT issues, enhancing interdepartmental support efficiency by 25%.",
+        "Enforced IT security and data integrity policies using Windows Firewall and remote access tools (AnyViewer, AnyDesk), achieving full compliance during internal audits."
+      ]
+    },
+    {
+      "title": "IT Support Specialist",
+      "company": "Kingdom (Ethiopia) Linen PLC, Adama Industrial Park, Ethiopia",
+      "dates": "January 2024 - June 2024",
+      "responsibilities": [
+        "Provided remote and on-site technical support to 40+ users, resolving hardware, software, and network issues using tools like AnyDesk and AnyViewer within an average response time of 30 minutes.",
+        "Managed a custom-built helpdesk ticketing system, handling over 100 tickets monthly and maintaining a 95% first-contact resolution rate.",
+        "Applied regular Windows security patches and updates, and successfully utilized System Restore to recover several gigabytes of critical data during system failures."
+      ]
+    },
+    {
+      "title": "IT Specialist",
+      "company": "Kingdom (Ethiopia) Linen PLC, Adama Industrial Park, Ethiopia",
+      "dates": "August 2023 - December 2023",
+      "responsibilities": [
+        "Configured and maintained LAN, WAN, and wireless networks to ensure seamless connectivity across the facility, enhancing system reliability for 40+ users.",
+        "Installed and supported Kingdee K3 ERP software, streamlining workflow automation and reducing software-related issues through proactive user training and troubleshooting.",
+        "Managed procurement and maintenance of 60+ IT assets, securing exclusive vendor deals that reduced hardware costs and ensured continuous inventory availability."
+      ]
+    },
+    {
+      "title": "IT Support",
+      "company": "Kingdom (Ethiopia) Linen PLC, Adama Industrial Park, Ethiopia",
+      "dates": "April 2023 - July 2023",
+      "responsibilities": [
+        "Resolved daily technical issues across 40+ desktops, laptops, and peripherals, ensuring consistent workstation functionality with minimal user downtime.",
+        "Delivered remote desktop support using AnyDesk and AnyViewer, enabling uninterrupted access and rapid troubleshooting for off-site staff.",
+        "Tracked and resolved over 200 support tickets via internal helpdesk, including restoring failed surveillance cameras, significantly improving workplace security and response time."
+      ]
+    },
+    {
+      "title": "IT Clerk",
+      "company": "Kingdom (Ethiopia) Linen PLC, Adama Industrial Park, Ethiopia",
+      "dates": "December 2022 - March 2023",
+      "responsibilities": [
+        "Performed IT administrative tasks including setup and configuration of hardware and software for new employees, ensuring readiness from day one.",
+        "Assisted in maintaining IT equipment by performing preventive diagnostics and minor repairs, reducing downtime for frequently used devices.",
+        "Created internal documentation for recurring technical issues and resolutions, improving troubleshooting efficiency and onboarding for IT team members."
+      ]
+    }
+  ],
+  "skills": [
+    "Technical Support & Troubleshooting: Diagnosing and resolving hardware, software, and network issues; providing in-person and remote support.",
+    "System & Network Administration: Managing Windows/Linux systems and network configurations; troubleshooting LAN, WAN, and wireless systems.",
+    "Helpdesk Management: Maintaining IT helpdesk systems for efficient ticket resolution.",
+    "Security & Maintenance: Applying updates, patches, and antivirus protection; implementing data backup and recovery strategies.",
+    "Communication & User Training: Communicating technical information to non-technical users; training users on IT systems and preventive measures."
+  ],
+  "languages": ["Amharic: Native", "English: Fluent"]
+}
